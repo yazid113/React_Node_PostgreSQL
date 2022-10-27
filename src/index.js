@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
@@ -9,8 +10,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-
 const taskRouter = require("./routes/task.routes");
+const { config } = require("dotenv");
 
 app.use(taskRouter);
 
