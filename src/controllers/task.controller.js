@@ -14,7 +14,11 @@ const getTask = async (req, res) => {
   try {
     const { id } = req.params;
     const task = await pool.query("SELECT * FROM tasks WHERE id = $1", [id]);
+    if (task.rows.length === 0) {
+      return res.status(404).json("Task not found!");
+    }
     res.json(task.rows[0]);
+    
   } catch (err) {
     console.error(err.message);
   }
@@ -30,6 +34,7 @@ const createTask = async (req, res) => {
     res.json(newTask.rows[0]);
   } catch (err) {
     console.error(err.message);
+    res.json({ error: err.message });
   }
 };
 

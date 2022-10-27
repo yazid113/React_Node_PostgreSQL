@@ -11,7 +11,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 const taskRouter = require("./routes/task.routes");
-const { config } = require("dotenv");
 
 app.use(taskRouter);
 
